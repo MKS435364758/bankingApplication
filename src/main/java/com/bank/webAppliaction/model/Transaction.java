@@ -36,6 +36,11 @@ public class Transaction {
     @Column(name = "transaction_made_on")
     private Timestamp made_on;
 
+    @Column(name="transaction_Type")//,columnDefinition = "transaction")
+    private String transactionType;
+
+    @Column(name="description")
+    private String description;
     @NotNull
     @ManyToOne(optional = false)
     @JoinColumn(name = "customerId",referencedColumnName = "cus_acc_num")
