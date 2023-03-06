@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 @SpringBootApplication
 @AllArgsConstructor
-public class WebApplication implements CommandLineRunner {
+public class WebApplication  implements CommandLineRunner {
 
 	CustomerRepository customerRepository;
 

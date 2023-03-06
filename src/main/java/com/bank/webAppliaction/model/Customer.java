@@ -1,6 +1,7 @@
 package com.bank.webAppliaction.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -24,6 +25,7 @@ public class Customer {
     @SequenceGenerator(name = "Seq_id",
             initialValue = 10021345,allocationSize = 7)
     @Column(name="cus_acc_num")
+    @NotNull
     private long id;
 
     @NonNull

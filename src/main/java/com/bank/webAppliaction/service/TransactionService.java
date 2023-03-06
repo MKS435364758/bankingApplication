@@ -24,7 +24,9 @@ public class TransactionService {
     CustomerRepository customerRepository;
 
     public Transaction customerTransaction(TransactionDetails details){
+
         Optional<Customer> customer = customerRepository.findById(details.getId());
+
         if( ! customer.isPresent()) throw new ContentNoFound("No account found with ID :\t"+details.getId());
         BigDecimal balance = customer.get().getBalance();
         if( balance.compareTo(details.getAmount())==-1) throw new ContentNoFound("Not enough balance available\nCurrentBalance\t:\t"+balance);
@@ -35,7 +37,7 @@ public class TransactionService {
         customerRepository.findById(details.getId()).get().setBalance(transaction.getRemainBalance());
         transaction.setMade_on(Timestamp.from(Instant.now()));
         transaction.setTransactionType(details.getType());
-        transaction.setDescription(details.getDescription() == null ? "": details.getDescription());
+        transaction.setDescription(details.getDescription() == null ? ""  : details.getDescription());
         try {
             return transactionRepository.save(transaction);
         }catch (RuntimeException ex){
