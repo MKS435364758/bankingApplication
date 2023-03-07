@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class TransactionDetails {
+public class TransactionDetails extends Details {
 
     @NonNull
     private Long id;
@@ -21,5 +21,4 @@ public class TransactionDetails {
     private String type;
 
     private String description;
-
 }
