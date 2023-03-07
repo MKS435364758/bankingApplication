@@ -17,7 +17,7 @@ public class TransactionController {
 
     TransactionService transactionService;
 
-    @PostMapping("/debit")
+    @PostMapping("/")
     public ResponseEntity<Transaction> amountDebitTransaction(@RequestBody TransactionDetails details){ // subtract amount
         return new ResponseEntity<>( transactionService.debit(details),
                 HttpStatus.OK

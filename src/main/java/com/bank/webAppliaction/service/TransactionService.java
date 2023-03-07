@@ -31,7 +31,7 @@ public class TransactionService {
             if (balance.compareTo(details.getAmount()) == -1)
                 throw new ContentNoFound("Not enough balance available\nCurrentBalance\t:\t" + balance);
             BigDecimal remainingBalance = balance.subtract(details.getAmount());
-            return transactionMethod(customer.get(), balance, details);
+            return transactionMethod(customer.get(), remainingBalance, details);
         }catch (RuntimeException ex){
             throw new ContentNoFound(ex.getMessage());
         }
