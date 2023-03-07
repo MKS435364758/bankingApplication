@@ -2,6 +2,7 @@ package com.bank.webAppliaction.controller;
 
 
 import com.bank.webAppliaction.model.Customer;
+import com.bank.webAppliaction.model.CustomerDetails;
 import com.bank.webAppliaction.service.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,20 +17,29 @@ import java.util.List;
 public class CustomerController {
 
     CustomerService customerService;
+    TransactionController transactionController;
 
     @PostMapping("/add")
     public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer){
         return new ResponseEntity<>( customerService.saveCustomer(customer),
+                HttpStatus.CREATED
+        );
+    }
+
+    @PutMapping("/add/balance")
+    public ResponseEntity<Customer> creditCustomerBalance(@RequestBody CustomerDetails customerDetails){ // add amount
+        return new ResponseEntity<>(customerService.creditCustomerBalance(customerDetails),
                 HttpStatus.OK
         );
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer){
-        return new ResponseEntity<>( customerService.updateCustomer(customer),
+    @PutMapping("/update/name")
+    public ResponseEntity<Customer> updateCustomerName(@RequestBody CustomerDetails customerDetails){
+        return new ResponseEntity<>( customerService.updateCustomerName(customerDetails),
                 HttpStatus.OK
         );
     }
+
 
     @GetMapping("/customers")
     public ResponseEntity<List<Customer>> getCustomer(){
@@ -43,7 +53,7 @@ public class CustomerController {
     public ResponseEntity<Object> deleteCustomer(@PathVariable("id") Long id){
         customerService.deleteCustomer(id);
         return new ResponseEntity<>(
-                HttpStatus.OK
+                HttpStatus.NO_CONTENT
         );
     }
 

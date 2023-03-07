@@ -22,7 +22,7 @@ create table transactions(
 	transaction_Type varchar(20) not null,
 	description text,
 	
-	primary key(trans_Id),
+	primary key(transaction_id),
 	
 	foreign key(customerId) references customers (cus_acc_num)
 

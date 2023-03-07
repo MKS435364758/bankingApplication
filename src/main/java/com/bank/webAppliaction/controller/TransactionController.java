@@ -17,9 +17,16 @@ public class TransactionController {
 
     TransactionService transactionService;
 
-    @PostMapping("/")
-    public ResponseEntity<Transaction> saveTransaction(@RequestBody TransactionDetails details){
-        return new ResponseEntity<>( transactionService.customerTransaction(details),
+    @PostMapping("/debit")
+    public ResponseEntity<Transaction> amountDebitTransaction(@RequestBody TransactionDetails details){ // subtract amount
+        return new ResponseEntity<>( transactionService.debit(details),
+                HttpStatus.OK
+        );
+    }
+
+    @PostMapping("/credit")
+    public ResponseEntity<Transaction> amountCreditTransaction(@RequestBody TransactionDetails details){ // add amount
+        return new ResponseEntity<>( transactionService.credit(details),
                 HttpStatus.OK
         );
     }

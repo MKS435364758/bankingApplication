@@ -43,7 +43,7 @@ public class Transaction {
     private String description;
     @NotNull
     @ManyToOne(optional = false)
-    @JoinColumn(name = "customerId",referencedColumnName = "cus_acc_num")
+    @JoinColumn(name = "customer_id",referencedColumnName = "cus_acc_num")
     private Customer customer;
 
 }
